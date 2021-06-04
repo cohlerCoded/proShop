@@ -22,7 +22,66 @@ const CartScreen = ({ match, location, history }) => {
     }
   }, [dispatch, productId, qty])
 
-  return <div>Cart</div>
+  const removeFromCartHanler = (id) => {
+    console.log('remove')
+  }
+
+  return (
+    <Row>
+      <Col md={8}>
+        <h1>Shopping Cart</h1>
+        {cartItems.length === 0 ? (
+          <Message>
+            Your Cart is Empty <Link to='/'>Go Back</Link>
+          </Message>
+        ) : (
+          <ListGroup variant='flush'>
+            {cartItems.map((item) => (
+              <ListGroup.Item key={item.product}>
+                <Row>
+                  <Col md={2}>
+                    <Image src={item.image} alt={item.name} fluid rounded />
+                  </Col>
+                  <Col md={3} to={`/product/${item.product}`}>
+                    <Link>{item.name}</Link>
+                  </Col>
+                  <Col md={2}>{item.price}</Col>
+                  <Col md={2}>
+                    <Form.Control
+                      as='select'
+                      value={item.qty}
+                      onChange={(e) =>
+                        dispatch(
+                          addToCart(item.product, parseInt(e.target.value))
+                        )
+                      }
+                    >
+                      {[...Array(item.countInStock).keys()].map((el) => (
+                        <option key={el + 1} value={el + 1}>
+                          {el + 1}
+                        </option>
+                      ))}
+                    </Form.Control>
+                    <Col md={2}>
+                      <Button
+                        type='button'
+                        variant='light'
+                        onClick={() => removeFromCartHanler(item.product)}
+                      >
+                        <i className='fas fa-trash'></i>
+                      </Button>
+                    </Col>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        )}
+      </Col>
+      <Col md={2}></Col>
+      <Col md={2}></Col>
+    </Row>
+  )
 }
 
 export default CartScreen
