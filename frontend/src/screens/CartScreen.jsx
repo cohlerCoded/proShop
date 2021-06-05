@@ -2,7 +2,16 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
-import { Row, Col, Image, Form, Button, Card, ListGroup } from 'react-bootstrap'
+import {
+  Row,
+  Col,
+  Image,
+  Form,
+  Button,
+  Card,
+  ListGroup,
+  ListGroupItem,
+} from 'react-bootstrap'
 import { addToCart } from '../actions/cartActions'
 
 const CartScreen = ({ match, location, history }) => {
@@ -26,6 +35,9 @@ const CartScreen = ({ match, location, history }) => {
     console.log('remove')
   }
 
+  const checkoutHandler = () => {
+    history.push('/login?redirect=shipping')
+  }
   return (
     <Row>
       <Col md={8}>
@@ -78,8 +90,32 @@ const CartScreen = ({ match, location, history }) => {
           </ListGroup>
         )}
       </Col>
-      <Col md={2}></Col>
-      <Col md={2}></Col>
+      <Col md={4}>
+        <Card>
+          <ListGroup variant='flush'>
+            <ListGroup.Item>
+              <h2>
+                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                items
+              </h2>
+              $
+              {cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                .toFixed(2)}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button
+                type='button'
+                className='btn-block'
+                disabled={cartItems.length === 0}
+                onClick={checkoutHandler}
+              >
+                Proceed To Checkout
+              </Button>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
+      </Col>
     </Row>
   )
 }
