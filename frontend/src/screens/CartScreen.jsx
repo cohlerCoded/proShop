@@ -2,16 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
-import {
-  Row,
-  Col,
-  Image,
-  Form,
-  Button,
-  Card,
-  ListGroup,
-  ListGroupItem,
-} from 'react-bootstrap'
+import { Row, Col, Image, Form, Button, Card, ListGroup } from 'react-bootstrap'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
 const CartScreen = ({ match, location, history }) => {

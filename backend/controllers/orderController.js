@@ -4,7 +4,7 @@ import asyncHandler from 'express-async-handler'
 // @desc Create new order
 // @route POST /api/orders
 // @access Private
-const adddOrderItems = asyncHandler(async (req, res) => {
+const addOrderItems = asyncHandler(async (req, res) => {
   const {
     orderItems,
     shippingAddress,
@@ -34,4 +34,4 @@ const adddOrderItems = asyncHandler(async (req, res) => {
   }
 })
 
-export { adddOrderItems }
+export { addOrderItems }
