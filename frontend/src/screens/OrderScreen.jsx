@@ -1,5 +1,6 @@
+import axios from 'axios'
 import React, { useEffect } from 'react'
-import { Col, Row, ListGroup, Image, Card, Button } from 'react-bootstrap'
+import { Col, Row, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getOrderDetails } from '../actions/orderActions'
@@ -25,10 +26,17 @@ const OrderScreen = ({ match }) => {
   }
 
   useEffect(() => {
+    const addPayPalScript = async () => {
+      const { data: clientId } = await axios.get('/api/config/paypal')
+      console.log(clientId)
+    }
+
+    addPayPalScript()
+
     if (!order || order._id !== orderId) {
       dispatch(getOrderDetails(orderId))
     }
-  }, [order, orderId])
+  }, [order, orderId, dispatch])
 
   return loading ? (
     <Loader />
