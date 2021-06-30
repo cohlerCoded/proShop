@@ -64,8 +64,6 @@ const updateProduct = asyncHandler(async (req, res) => {
     res.status(404)
     throw new Error('Product Not Found')
   }
-  const createdProduct = await product.save()
-  res.sendStatus(201).json(product)
 })
 
 // @desc Delete a product
@@ -82,4 +80,10 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 })
 
-export { getProducts, getProductById, deleteProduct }
+export {
+  getProducts,
+  getProductById,
+  deleteProduct,
+  createProduct,
+  updateProduct,
+}
