@@ -76,9 +76,8 @@ const ProductListScreen = ({ history, match }) => {
           </Col>
         </Col>
       </Row>
-      {loadingDelete && <Loader />}
+      {loadingDelete || (loadingCreate && <Loader />)}
       {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
-      {loadingCreate && <Loader />}
       {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
       {loading ? (
         <Loader />
