@@ -80,7 +80,7 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
   if (order) {
     order.isDelivered = true
-    order.deliverdAt = Date.now()
+    order.deliveredAt = Date.now()
 
     const updateOrder = await order.save()
 
