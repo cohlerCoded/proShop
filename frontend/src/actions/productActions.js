@@ -16,7 +16,6 @@ import {
   PRODUCT_UPDATE_SUCCESS,
   PRODUCT_UPDATE_FAIL,
 } from '../constants/productConstants'
-import { productUpdateReducer } from '../reducers/productReducers'
 
 export const listProducts = () => async (dispatch) => {
   try {
