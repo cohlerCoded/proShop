@@ -31,6 +31,8 @@ const OrderScreen = ({ match }) => {
         0
       )
     )
+    order.taxPrice = addDecimals(order.taxPrice)
+    order.shippingPrice = addDecimals(order.shippingPrice)
   }
 
   useEffect(() => {
