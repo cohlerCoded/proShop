@@ -97,7 +97,7 @@ export const createProductReview =
           Authorization: `Bearer ${userInfo.token}`,
         },
       }
-      await axios.post(`/api/products/${productId}/reviews`, {}, config)
+      await axios.post(`/api/products/${productId}/reviews`, review, config)
       dispatch({
         type: PRODUCT_CREATE_REVIEW_SUCCESS,
       })
